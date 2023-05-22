@@ -1,0 +1,100 @@
+package edu.sru.thangiah.datastructures.stack;
+
+public class Stack extends AbstractStack{
+		private final int MAXSIZE = 100;
+		private Object arrayVal[];
+		private int count;	
+		
+		public Stack()
+		{
+			arrayVal = new Object[MAXSIZE];
+			count = 0;
+		}
+
+		// isEmpty
+		// query if the structure is empty?
+		public boolean isEmpty() {
+			if (count == 0) {
+				return true;
+			}
+			return false;
+		}
+
+		// isFull
+		// query if the structure is full
+		public boolean isFull() {
+			if (count == MAXSIZE) {
+				return true;
+			}
+			return false;
+		}
+
+		// push
+		public boolean push(Object value) {
+			boolean result ;
+			result = add(value);
+			return result;
+		}
+		
+		// add to end of structure
+		public boolean add(Object value) {
+			if (!this.isFull()) {
+				arrayVal[count] = value;
+				count++;
+				return true;
+			}
+			return false;
+		}
+
+		//pop
+		public Object pop() {
+			Object result ;
+			result = remove();
+			return result;
+		}
+		
+		//remove at the end of structure
+		public Object remove()
+		{
+			Object retVal = -1;
+			if (!this.isEmpty()) {
+				count--;
+				return arrayVal[count];
+			}
+			return retVal;			
+		}		
+		
+		// top
+		public Object top() {
+			Object val;
+			return getFirst(); 
+		}
+		
+		//get the first value of the structure
+		public Object getFirst()
+		{
+			Object retVal = -1;
+			if (!this.isEmpty()) {
+				 return arrayVal[--count];
+			}
+			return retVal;
+		}
+		
+		public static void main(String args[])
+		{
+			Stack stack = new Stack();
+			System.out.println("Pop a value "+stack.pop());
+			System.out.println("Push a value "+stack.push(10));
+			System.out.println("Top value is "+stack.top());
+		}
+
+		@Override
+		public boolean add(int value) {
+			// TODO Auto-generated method stub
+			return false;
+		}
+
+	
+		
+		
+}

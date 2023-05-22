@@ -1,0 +1,27 @@
+package edu.sru.thangiah.datastructures.vector;
+import java.util.*;
+
+public class VectorDemo {
+	public static void main (String args[]) {
+		
+		int maxSize;
+		maxSize = (int)((Math.random() * 20)+1);
+		Vector vect = new Vector();
+		
+		
+		for (int i = 0; i<maxSize; i++)
+		{
+			vect.addElement(i);
+		}
+		for (int j = 0; j<vect.size(); j++)
+		{
+			System.out.println(vect.get(j)); //elementAt, get methods
+		}
+		//metadata 
+		//information about self (Query vector to gain information about size, element, etc.)
+		System.out.println(vect.lastElement());
+		System.out.println(vect.indexOf(1));
+	}
+	
+	
+}

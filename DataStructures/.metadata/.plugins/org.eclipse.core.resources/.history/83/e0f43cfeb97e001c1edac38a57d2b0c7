@@ -1,0 +1,105 @@
+package edu.sru.thangiah.datastructures.stack;
+
+/*
+ * Array structured stack with Objects as stack data
+ * Not dynamically allocated, FIFO stack of objects
+ */
+
+public class Stack extends AbstractStack{
+		private final int MAXSIZE = 100;
+		private Object arrayVal[];
+		private int count;	
+		
+		public Stack() //default constructor that creates a stack
+		{
+			arrayVal = new Object[MAXSIZE];
+			count = 0;
+		}
+
+		// isEmpty
+		// query if the structure is empty
+		public boolean isEmpty() {
+			if (count == 0) {
+				return true;
+			}
+			return false;
+		}
+
+		// isFull
+		// query if the structure is full
+		public boolean isFull() {
+			if (count == MAXSIZE) {
+				return true;
+			}
+			return false;
+		}
+
+		// push adds to the end of a stack
+		public boolean push(Object value) {
+			boolean result ;
+			result = add(value);
+			return result;
+		}
+		
+		// adds an object to the array
+		public boolean add(Object value) {
+			if (!this.isFull()) {
+				arrayVal[count] = value;
+				count++;
+				return true;
+			}
+			return false;
+		}
+
+		//pop takes object off top of stack
+		public Object pop() {
+			Object result ;
+			result = remove();
+			return result;
+		}
+		
+		//removes an object from the array
+		public Object remove()
+		{
+			Object retVal = -1;
+			if (!this.isEmpty()) {
+				count--;
+				return arrayVal[count];
+			}
+			return retVal;			
+		}		
+		
+		//top checks the top object on stack
+		public Object top() {
+			Object val;
+			return getFirst(); 
+		}
+		
+		//get the first value of the structure
+		public Object getFirst()
+		{
+			Object retVal = -1;
+			if (!this.isEmpty()) {
+				 return arrayVal[--count];
+			}
+			return retVal;
+		}
+		
+		public static void main(String args[])
+		{
+			Stack stack = new Stack();
+			System.out.println("Pop a value "+stack.pop());
+			System.out.println("Push a value "+stack.push(10));
+			System.out.println("Top value is "+stack.top());
+		}
+
+		@Override
+		public boolean add(int value) {
+			// TODO Auto-generated method stub
+			return false;
+		}
+
+	
+		
+		
+}

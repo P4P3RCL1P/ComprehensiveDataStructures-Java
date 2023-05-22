@@ -1,0 +1,169 @@
+package edu.sru.thangiah.datastructures.queue;
+
+/*
+<<<<<<< HEAD
+ * Queue array class, demonstrates queue implementation using integers
+ * Traditional but not dynamically allocated
+ */
+
+=======
+ * Queue implementation using an array. Elements are inserted and removed in a FIFO( first-in-first-out) manner
+ * as elements enter in the container they are figuratively assigned a "priority" in which the first element to
+ * enter will be the first to leave.
+ * 
+ * The fundamentals of an array require a size to be initialized during instantiation of the container, which we will later
+ * overcome by using a dynamic data structure such as a vector.
+ */
+>>>>>>> branch 'master' of https://github.com/als1054/tempGroup4Project.git
+public class QueueArray extends AbstractQueue {
+	
+	private final int MAXSIZE = 10;
+	private int count;
+	private int removeCounter;
+	private int[] myArray;
+	
+	QueueArray() {
+		myArray = new int[MAXSIZE];
+		count = 0;
+		removeCounter = 0;
+	}
+
+	@Override
+	public boolean isEmpty() {
+		if (count == 0) {
+			return true;
+		}
+		else {
+			return false;
+		}
+	}
+
+	@Override
+	public boolean isFull() {
+		if (count == MAXSIZE) {
+			return true;
+		}
+		else {
+			return false;
+		}
+	}
+
+	
+	// enQueue calls the addLast method, present to allow for common nomenclature in Queue
+	// structure
+	public boolean enQueue(int value) {
+		return this.addLast(value);
+	}
+	
+	
+	// addLast adds a value to the back of the queue
+	@Override
+	public boolean addLast(int value) {
+		if (!this.isFull()) {		// avoids adding a value if the array is full
+			myArray[count] = value;
+			count++;				// increment count to indicate how many elements in queue
+			return true;
+		}
+		else {
+			System.out.println("ERROR: Queue is full.");
+			return false;			// returns false if value was not added
+		}
+		
+	}
+	
+	// Similarly to enQueue, provided for common nomenclature, calls the removeFirst method	
+	public int deQueue() {
+		return this.removeFirst();
+	}
+
+	// removeFirst removes the first value that was added in and returns it to the user
+	@Override
+	public int removeFirst() {
+		if (!this.isEmpty()) {
+			int tempVal = myArray[removeCounter];	
+			// stores the value in a temporary variable to return later
+			myArray[removeCounter] = 0;
+			removeCounter++;	// points to the first location in the array
+			count--; 			// Decrement count to reflect contents of the array
+			
+			if (count < removeCounter) {	
+				// Triggers only when count goes below removeCounter to 
+				this.shift();
+				removeCounter = 0;
+			}
+			return tempVal;			// returns the value of the removed element
+		}
+		else {
+			System.out.println("ERROR: Queue is empty.");
+			return -1;	// returns if the array is empty
+		}
+	}
+	
+	
+	// Shift puts all the elements back in the proper place for the queue
+	public void shift() {
+		for (int i = 0; i < count; i++) {
+			this.myArray[i] = this.myArray[removeCounter + i];
+			this.myArray[removeCounter + i] = 0;
+		}
+	}
+	
+	@Override
+	public String toString() {
+		String tempVal = " ";
+		if (!this.isEmpty()) {
+			for (int i = removeCounter; i < count; i++) {
+				tempVal += " " +this.myArray[i];
+			}
+		}
+		if (tempVal.equals(" ")) {
+			return " empty";
+		}		
+		return tempVal;
+	}
+	
+	public static void main(String[] args) {
+		QueueArray queue = new QueueArray();
+		System.out.println("Queue is empty-1:"+queue.isEmpty());
+		System.out.println("Queue is full-1:"+queue.isFull());
+		System.out.println("DeQueue value is "+queue.deQueue());
+		queue.enQueue(10);
+		for (int i=0; i < 3; i++)
+		{
+			System.out.println("DeQueue value is "+queue.deQueue());
+		}
+		queue.enQueue(20);
+		queue.enQueue(30);
+		queue.enQueue(40);
+		for (int i=0; i < 14; i++)
+		{
+			queue.enQueue(i*10);
+		}
+		System.out.println("Queue is"+queue);
+		System.out.println("Deque value is "+queue.deQueue());
+		System.out.println("Deque value is "+queue.deQueue());
+		System.out.println("Queue is"+queue);
+		System.out.println("Queue is empty-2:"+queue.isEmpty());
+		System.out.println("Queue is full-2:"+queue.isFull());
+		for (int i=0; i < 20; i++)
+		{
+			System.out.println("DeQueue value is "+queue.deQueue());
+		}
+		System.out.println("Queue is"+queue);
+		System.out.println("Queue is empty-3:"+queue.isEmpty());
+		System.out.println("Queue is full-3:"+queue.isFull());
+		
+	}
+
+	@Override
+	public boolean add(int value) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public Object remove() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+}

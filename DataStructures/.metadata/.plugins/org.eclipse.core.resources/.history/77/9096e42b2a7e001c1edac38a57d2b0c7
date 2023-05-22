@@ -1,0 +1,29 @@
+package edu.sru.thangiah.datastructures.queue.generic;
+
+public interface BaseOpsIntGeneric<T> {
+	
+	//Get the size
+	int size();
+	
+	//is it empty
+	public boolean isEmpty();
+	
+	//is it full
+	public boolean isFull();
+	
+	//clear out all the values
+	public boolean clear();
+	
+	//Check if value exists in the structure
+	public boolean contains(T value);
+	
+	// add to end of structure
+	public boolean add(T value);
+	
+	//remove at the end of structure
+	public T remove();
+	
+	//index of first occurrence of value
+	public int indexOf(T value);
+	
+}

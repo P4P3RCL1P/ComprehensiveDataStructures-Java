@@ -1,0 +1,4 @@
+INDEX VERSION 1.131+C:\Users\baseb\OneDrive\Documents\GitHub\tempGroup4Project\DataStructures\.metadata\.plugins\org.eclipse.jdt.core
+2726917847.index
+3601885327.index
+1865797976.index
